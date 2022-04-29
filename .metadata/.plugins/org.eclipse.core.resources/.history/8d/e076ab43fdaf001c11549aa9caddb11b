@@ -1,0 +1,15 @@
+package com.student.Proxy;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.student.models.Student;
+
+@FeignClient(name="address-service",url="localhost:4000")
+public interface AddressMicroserviceProxy {
+	
+	@GetMapping("/api/address/{id}")
+	public Student retrieveAddressDetails(@PathVariable int id);
+
+}

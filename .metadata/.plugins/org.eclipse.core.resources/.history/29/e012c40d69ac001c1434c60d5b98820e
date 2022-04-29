@@ -1,0 +1,38 @@
+package com.currencyexchange.currencyexchangeservice.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.currencyexchange.currencyexchangeservice.Repository.CurencyExchangeRepository;
+import com.currencyexchange.currencyexchangeservice.models.CurrencyExchange;
+
+@RestController
+public class CurrencyExchangeController {
+
+	@Autowired
+	private Environment environment;
+	
+	@Autowired
+	private CurencyExchangeRepository repo;
+	
+	@GetMapping("/currency-exchange/{from}/to/{to}")
+	public CurrencyExchange retrieveExchangeValue(@PathVariable  String from,@PathVariable String to) {
+	    CurrencyExchange currencyExchange = repo.findByFromAndTo(from, to);
+	    
+	    String port = environment.getProperty("local.server.port");
+	    currencyExchange.setEnvironment(port);
+	    
+	    
+	    return currencyExchange;
+	}
+	
+	@PostMapping("/addCurrency")
+	public CurrencyExchange addCurrency(@RequestBody CurrencyExchange ce) {
+		return repo.save(ce);
+	}
+}

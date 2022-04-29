@@ -1,0 +1,3 @@
+1648197084835	Encapsulate field 'maximum'
+1648197090138	Encapsulate field 'minimum'
+1648197296272	Rename package 'com.microservices.limits.Service.Configuration'

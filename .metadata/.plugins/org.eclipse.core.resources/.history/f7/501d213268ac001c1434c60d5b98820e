@@ -1,0 +1,11 @@
+package com.currencyexchange.currencyexchangeservice.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.currencyexchange.currencyexchangeservice.models.CurrencyExchange;
+
+@Repository
+public interface CurencyExchangeRepository extends JpaRepository<CurrencyExchange, Integer> {
+
+}

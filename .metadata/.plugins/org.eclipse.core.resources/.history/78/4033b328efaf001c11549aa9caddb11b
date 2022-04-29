@@ -1,0 +1,5 @@
+package com.address.models;
+
+public class Address {
+
+}

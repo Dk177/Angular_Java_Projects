@@ -1,0 +1,5 @@
+package com.currencyexchange.currencyexchangeservice;
+
+public class CurrencyExchangeController {
+
+}

@@ -1,0 +1,90 @@
+package com.currencyexchange.currencyexchangeservice.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
+
+@Entity
+@Table(name = "currency_exchange")
+public class CurrencyExchange {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator ="currency_id")
+	@SequenceGenerator(name = "currency_id",initialValue = 10001,allocationSize = 1)
+	private int id;
+	
+	@NotNull
+	@Column(name = "currency_from")
+	private String from;
+	
+	@NotNull
+	@Column(name = "currency_to")
+	private String to;
+	
+	@NotNull
+	private double conversionMultiple;
+	private String environment;
+	
+	public CurrencyExchange() {
+		
+	}
+	
+	public CurrencyExchange(int id, String from, String to, double conversionMultiple) {
+		super();
+		this.id = id;
+		this.from = from;
+		this.to = to;
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public double getConversionMultiple() {
+		return conversionMultiple;
+	}
+
+	public void setConversionMultiple(double conversionMultiple) {
+		this.conversionMultiple = conversionMultiple;
+	}
+
+	public String getEnvironment() {
+		return environment;
+	}
+
+	public void setEnvironment(String environment) {
+		this.environment = environment;
+	}
+	
+	
+	
+	
+	
+}

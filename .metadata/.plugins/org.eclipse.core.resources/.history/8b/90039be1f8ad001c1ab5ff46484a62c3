@@ -1,0 +1,5 @@
+package com.currencyconversion.models;
+
+public class CurrencyConversion {
+
+}

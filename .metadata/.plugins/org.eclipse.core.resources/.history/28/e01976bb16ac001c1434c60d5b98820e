@@ -1,0 +1,8 @@
+server.port=8080
+
+spring.config.import=optional:configserver:http://localhost:8888
+
+limits-Service.minimum=2
+limits-Service.maximum=998
+
+

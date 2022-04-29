@@ -1,0 +1,40 @@
+package com.student.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.student.Proxy.AddressMicroserviceProxy;
+import com.student.Repository.StudentRepository;
+import com.student.models.Student;
+import com.student.models.StudentResponse;
+
+@RestController
+public class StudentController {
+
+	
+	
+	@Autowired
+	private AddressMicroserviceProxy proxy;
+	
+	@Autowired
+	private StudentRepository repo;
+	
+	@PostMapping("/api/student")
+	public Student addStudent(@RequestBody Student student) {
+		return repo.save(student);
+	}
+	
+	
+	@GetMapping("/student/{student_id}/api/address")
+	public StudentResponse getaddressById(@PathVariable int student_id) {
+		
+		Student student = repo.findById(student_id).get();	
+		
+		StudentResponse addressDetails = proxy.retrieveAddressDetails(student.getAddressId());
+		return new StudentResponse(student.getId(),student.getName(),student.getEmail(),student.getMobile(),addressDetails.getStreet(),addressDetails.getCity(),addressDetails.getCountry());
+	}
+}
